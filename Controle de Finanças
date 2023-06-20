@@ -1,0 +1,64 @@
+# Função para adicionar uma transação
+def adicionar_transacao(transacoes, descricao, valor):
+    transacoes.append({"Descrição": descricao, "Valor": valor})
+
+# Função para calcular o saldo total
+def calcular_saldo(transacoes):
+    saldo = 0
+    for transacao in transacoes:
+        saldo += transacao["Valor"]
+    return saldo
+
+# Função para calcular o total de retiradas
+def calcular_total_retiradas(transacoes):
+    total_retiradas = 0
+    for transacao in transacoes:
+        if transacao["Valor"] < 0:
+            total_retiradas += abs(transacao["Valor"])
+    return total_retiradas
+
+# Função para exibir as transações
+def exibir_transacoes(transacoes):
+    for transacao in transacoes:
+        print(f"Descrição: {transacao['Descrição']}, Valor: {transacao['Valor']}")
+
+# Dicionário para armazenar as transações
+transacoes = []
+
+# Loop principal do programa
+while True:
+    print("--- Controle de Finanças ---")
+    print("1 - Adicionar transação")
+    print("2 - Calcular saldo")
+    print("3 - Calcular total de retiradas")
+    print("4 - Exibir transações")
+    print("5 - Sair")
+
+    opcao = int(input("Escolha uma opção: "))
+
+    if opcao == 1:
+        descricao = input("Digite a descrição da transação: ")
+        valor = float(input("Digite o valor da transação: "))
+        adicionar_transacao(transacoes, descricao, valor)
+        print("Transação adicionada com sucesso!")
+
+    elif opcao == 2:
+        saldo = calcular_saldo(transacoes)
+        print(f"Saldo total: {saldo}")
+
+    elif opcao == 3:
+        total_retiradas = calcular_total_retiradas(transacoes)
+        print(f"Total de retiradas: {total_retiradas}")
+
+    elif opcao == 4:
+        print("--- Transações ---")
+        exibir_transacoes(transacoes)
+
+    elif opcao == 5:
+        print("Encerrando o programa... Aprenda a diferenciar desejos de necessidades e priorize o que realmente importa. ")
+        break
+
+    else:
+        print("Opção inválida. Digite novamente.")
+
+    print()  # Linha em branco para separar as interações
